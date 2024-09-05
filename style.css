@@ -1,0 +1,171 @@
+header 
+{
+    font-weight: bold;
+    font-size: 40px;
+    color:  darkmagenta;
+    outline: 10cm;
+    outline-width: 10cm;
+    margin: auto;
+    background-color:#202020;
+    font-family: 'Times New Roman', Times, serif;
+    word-spacing: .02cm;
+    line-height: 3cm;
+}
+img
+{
+    mix-blend-mode:multiply;
+    background-color:darkmagenta;
+
+}
+h1
+{
+    text-align: center;
+    outline-color: darkmagenta;
+
+}
+h2
+{
+    text-align: left;
+    font-size: 25px;
+    
+}
+h2 p
+{
+    text-align: right;
+    font-size: 25px;
+    line-height: -350px;
+
+}
+
+a 
+{
+    text-decoration: none;
+    outline: 10cm;
+    outline-width: 10cm;
+    outline-color: darkmagenta;
+    color: plum;
+    list-style-type:none;
+    list-style: none;
+}
+
+ul li a
+{
+    text-decoration: none;
+    list-style: none;
+    display:inline-flexbox;
+    color: white;
+    list-style-type:none;
+    
+
+}
+
+nav 
+{
+    display: grid;
+    grid-template-columns: 1fr auto;
+    justify-items:start;
+    font-size: 20px;
+    font-style: italic;
+    background-color: black;
+    color: darkmagenta;
+    line-height: 250%;
+    margin-right: 10px;
+    list-style-type:none;
+    list-style: none;
+
+}
+aside h2
+{
+    display: grid;
+    flex: 1;
+    padding: 20px;
+    margin-top: 2px;
+    margin-left: 50px;
+    justify-items:end;
+    font-size: 25px;
+    font-style: normal;
+}
+aside p
+{
+    display: inline-flexbox;
+    margin-top: 20px;
+    right:5%;
+    left: 75%;
+    text-align: right;
+    font-size: 15px;
+    font-style: normal;
+    text-wrap:wrap;
+}
+
+nav ul li a
+{
+    list-style-type:none;
+    list-style: none;
+    display:inline-flexbox;
+    margin-right: 20px;
+    background-color: black;
+    color: plum;
+}
+
+footer ul li
+{
+    list-style-type:none;
+    list-style: none;
+    text-decoration: none;
+    display:inline-block;
+    margin-right: 20px;
+    background-color: black;
+    color: white;
+}
+
+
+nav ul
+{
+    text-transform: capitalize;
+    display: inline-flexbox;
+    margin-right: 10px;
+    text-align: left;
+    background-color: black;
+    color: darkmagenta;
+    list-style-type:none;
+    list-style: none;
+
+}
+
+body
+{
+    text-align: justify;
+    text-wrap:wrap;
+    background-color: black;
+    color: wheat;
+
+
+}
+
+section
+{
+    display: inline-block;
+    align-content: left;
+    background-color: black;
+    top: 100px;
+    text-align: justify;
+    color: wheat;
+
+
+}
+
+article
+{
+    position: absolute;
+    display:inline-flexbox;
+    align-content: justify;
+    background-color: black;
+    margin:300px;
+    top:10px;
+    left: -30px;
+    right: 4%;
+    text-align: justify;
+    color: wheat;
+
+
+}
