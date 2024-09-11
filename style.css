@@ -1,172 +1,149 @@
-header 
-{
+body {
+    text-align: justify;
+    background-color: #000;
+    color: #f5deb3;
+  }
+  
+  header {
     font-weight: bold;
     font-size: 40px;
-    color:  darkmagenta;
-    outline: 10cm;
-    outline-width: 10cm;
-    margin: auto;
-    background-color:#202020;
+    color: darkmagenta;
+    background-color: #202020;
     font-family: 'Times New Roman', Times, serif;
-    word-spacing: .02cm;
+    word-spacing: 0.02cm;
     line-height: 3cm;
-}
-img
-{
-    mix-blend-mode:multiply;
-    background-color:darkmagenta;
-
-}
-h1
-{
+    text-align: center;
+  }
+  
+  img {
+    mix-blend-mode: multiply;
+    background-color: darkmagenta;
+  }
+  
+  h1 {
     text-align: center;
     outline-color: darkmagenta;
-
-}
-h2
-{
+  }
+  
+  h2 {
     text-align: left;
     font-size: 25px;
-    
-}
-h2 p
-{
+  }
+  
+  h2 p {
     text-align: right;
     font-size: 25px;
-    line-height: -350px;
+    line-height: 1.5; 
+  }
 
-}
 
-a 
-{
+  a {
     text-decoration: none;
-    outline: 10cm;
-    outline-width: 10cm;
-    outline-color: darkmagenta;
     color: plum;
-    list-style-type:none;
-    list-style: none;
-}
-
-ul li a
-{
-    text-decoration: none;
-    list-style: none;
-    display:inline-flexbox;
-    color: white;
-    list-style-type:none;
-    
-
-}
-
-nav 
-{
+  }
+  
+  a:hover {
+    color: #fff; 
+  }
+  
+  nav {
     display: grid;
-    grid-template-columns: 1fr auto;
-    justify-items:start;
+    /* grid-template-columns: 1fr auto; */
+    /* justify-items: start; */
     font-size: 20px;
     font-style: italic;
-    background-color: black;
+    background-color: #000; 
     color: darkmagenta;
-    line-height: 250%;
-    margin-right: 10px;
-    list-style-type:none;
+    line-height: 200%;
+    /* margin-right:10%; */
+  }
+  
+  nav ul {
     list-style: none;
+    flex-direction: column;
+    margin: 0;
+    padding: 10px;
+    display: flex;
+    margin-right: 30px;
+    justify-content: start;
+  }
+  
+  nav li {
+    padding-top: 10px;
+    margin-right: 10px;
+    padding-right: 100px;
+  }
+  
+  nav a {
+    color: plum;
+  }
+  
+  nav a:hover {
+    color: #fff; 
+  }
 
-}
-aside h2
-{
-    display: grid;
-    flex: 1;
+  aside h2 {
     padding: 20px;
     margin-top: 2px;
     margin-left: 50px;
-    justify-items:end;
     font-size: 25px;
     font-style: normal;
-}
-aside p
-{
-    display: inline-flexbox;
+    text-align: right;
+  }
+  
+  aside p {
     margin-top: 20px;
-    right:5%;
+    right: 5%;
     left: 75%;
     text-align: right;
     font-size: 15px;
     font-style: normal;
-    text-wrap:wrap;
-}
-
-nav ul li a
-{
-    list-style-type:none;
+  }
+  
+  footer {
+    background-color: #000; 
+    color: #fff; 
+    padding: 10px;
+    text-align: center;
+  }
+  
+  footer ul {
     list-style: none;
-    display:inline-flexbox;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  footer li {
     margin-right: 20px;
-    background-color: black;
-    color: plum;
-}
+  }
+  
+  footer a {
+    color: #fff; 
+  }
+  
+  footer a:hover {
+    color: plum; 
+  }
+  
 
-footer ul li
-{
-    position: relative;
-    list-style-type:none;
-    list-style: none;
-    text-decoration: none;
-    display:inline-block;
-    margin-right: 20px;
-    background-color: black;
-    color: white;
-}
-
-
-nav ul
-{
-    text-transform: capitalize;
-    display: inline-flexbox;
-    margin-right: 10px;
-    text-align: left;
-    background-color: black;
-    color: darkmagenta;
-    list-style-type:none;
-    list-style: none;
-
-}
-
-body
-{
-    text-align: justify;
-    text-wrap:wrap;
-    background-color: black;
-    color: wheat;
-
-
-}
-
-section
-{
+  section {
     display: inline-block;
     align-content: left;
-    background-color: black;
-    top: 100px;
+    background-color: #000; 
+    padding: 20px;
     text-align: justify;
-    color: wheat;
-
-
-}
-
-article
-{
-    position: absolute;
-    display:inline-flexbox;
+    color: #f5deb3; 
+  }
+  
+  article {
+    position: relative; 
+    display: inline-block;
     align-content: justify;
-    background-color: black;
-    margin:300px;
-    top:10px;
-    left: -30px;
-    right: 4%;
+    background-color: #000; 
+    padding-left: 180px;
+    padding-right: 200px;
     text-align: justify;
-    color: wheat;
-
-
-}
+    color: #f5deb3; 
+  }
