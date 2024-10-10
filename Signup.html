@@ -85,36 +85,61 @@
         </ul>
     </footer>
     <script>
-      const passwordInput = document.getElementById('password');
-      const confirmPasswordInput = document.getElementById('confirmPassword');
-      const signUpButton = document.getElementById('signupForm').querySelector('button[type="submit"]');
 
-      passwordInput.addEventListener('input', checkPasswords);
-      confirmPasswordInput.addEventListener('input', checkPasswords);
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('confirmPassword');
+        const usernameInput = document.getElementById('username');
+        const emailInput = document.getElementById('email');
+        const signUpButton = document.getElementById('signupForm').querySelector('button[type="submit"]');
+        passwordInput.addEventListener('input', checkPasswords);
+        confirmPasswordInput.addEventListener('input', checkPasswords);
+        usernameInput.addEventListener('input', checkFields);
+        emailInput.addEventListener('input', checkFields);
 
-    function checkPasswords() {
-    const password = passwordInput.value;
-    const confirmPassword = confirmPasswordInput.value;
-    if (password.length < 8) {
-        signUpButton.disabled = true;
-        document.getElementById('passwordFeedback').textContent = 'Password must be at least 8 characters';
-        document.getElementById('passwordFeedback').classList.add('invalid-feedback');
-    } else {
-        document.getElementById('passwordFeedback').textContent = 'Password is valid';
-        document.getElementById('passwordFeedback').classList.add('valid-feedback');
-        document.getElementById('passwordFeedback').classList.remove('invalid-feedback');
-    }
+        function checkFields() {
+            const username = usernameInput.value;
+            const email = emailInput.value;
+            if (username === '' || email === '') {
+                signUpButton.disabled = true;
+            } else {
+                checkPasswords();
+            }
+        }
 
-    if (password !== confirmPassword) {
-        signUpButton.disabled = true;
-        document.getElementById('confirmPasswordFeedback').textContent = 'Passwords do not match';
-        document.getElementById('confirmPasswordFeedback').classList.add('invalid-feedback');
-    } else {
-        signUpButton.disabled = false;
-        document.getElementById('confirmPasswordFeedback').textContent = 'Passwords match';
-        document.getElementById('confirmPasswordFeedback').classList.add('valid-feedback');
-        document.getElementById('confirmPasswordFeedback').classList.remove('invalid-feedback');
-    }
-    }
+        function checkPasswords() {
+            const password = passwordInput.value;
+            const confirmPassword = confirmPasswordInput.value;
+            if (password === '' || confirmPassword === '') {
+                signUpButton.disabled = true;
+            } else {
+                if (password.length < 8) {
+                    signUpButton.disabled = true;
+                    document.getElementById('passwordFeedback').innerHTML = `<div class="alert alert-danger" role="alert">Password must be at least 8 characters</div>`;
+                } else if (!/[A-Z]/.test(password)) {
+                    signUpButton.disabled = true;
+                    document.getElementById('passwordFeedback').innerHTML = `<div class="alert alert-danger" role="alert">Password must contain at least one uppercase letter</div>`;
+                } else if (!/[0-9]/.test(password)) {
+                    signUpButton.disabled = true;
+                    document.getElementById('passwordFeedback').innerHTML = `<div class="alert alert-danger" role="alert">Password must contain at least one number</div>`;
+                } else if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)) {
+                    signUpButton.disabled = true;
+                    document.getElementById('passwordFeedback').innerHTML = `<div class="alert alert-danger" role="alert">Password must contain at least one symbol</div>`;
+                } else {
+                    document.getElementById('passwordFeedback').innerHTML = `<div class="alert alert-success" role="alert">Password is valid</div>`;
+                }
+
+                if (password !== confirmPassword) {
+                    signUpButton.disabled = true;
+                    document.getElementById('confirmPasswordFeedback').innerHTML = `<div class="alert alert-danger" role="alert">Passwords do not match</div>`;
+                } else if (password === confirmPassword && password.length >= 8) {
+                    signUpButton.disabled = false;
+                    document.getElementById('confirmPasswordFeedback').innerHTML = `<div class="alert alert-success" role="alert">Passwords match</div>`;
+                }
+            }
+        }   
+        signUpButton.addEventListener('click', function(event) {
+            event.preventDefault(); // prevent the default form submission
+            window.location.href = 'Login.html'; // redirect to Login.html
+        });
 
     </script> 
