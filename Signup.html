@@ -50,20 +50,27 @@
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" class="form-control" id="username" placeholder="Username...">
+                <div class="invalid-feedback"></div>
+                <div class="valid-feedback"></div>
             </div>
+              
             <div class="form-group">
                 <label for="email">Email address</label>
                 <input type="email" class="form-control" id="email" placeholder="Email...">
+                <div class="invalid-feedback"></div>
+                <div class="valid-feedback"></div>
             </div>
+              
             <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" placeholder="Password...">
-                <span id="passwordFeedback" class="feedback"></span>
+                <div id="passwordFeedback" class="feedback"></div>
             </div>
+              
             <div class="form-group">
                 <label for="confirmPassword">Confirm Password</label>
                 <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password...">
-                <span id="confirmPasswordFeedback" class="feedback"></span>
+                <div id="confirmPasswordFeedback" class="feedback"></div>
             </div>
             <button type="submit" class="btn btn-primary">Sign Up</button>
         </form>
@@ -99,9 +106,29 @@
         function checkFields() {
             const username = usernameInput.value;
             const email = emailInput.value;
-            if (username === '' || email === '') {
+            if (username === '') {
+                document.getElementById('username').classList.add('is-invalid');
+                document.getElementById('username').classList.remove('is-valid');
+                document.getElementById('username').nextElementSibling.innerHTML = 'Username is required';
                 signUpButton.disabled = true;
             } else {
+                document.getElementById('username').classList.remove('is-invalid');
+                document.getElementById('username').classList.add('is-valid');
+                document.getElementById('username').nextElementSibling.innerHTML = '';
+            }
+
+            if (email === '') {
+                document.getElementById('email').classList.add('is-invalid');
+                document.getElementById('email').classList.remove('is-valid');
+                document.getElementById('email').nextElementSibling.innerHTML = 'Email is required';
+                signUpButton.disabled = true;
+            } else {
+                document.getElementById('email').classList.remove('is-invalid');
+                document.getElementById('email').classList.add('is-valid');
+                document.getElementById('email').nextElementSibling.innerHTML = '';
+            }
+
+            if (username !== '' && email !== '') {
                 checkPasswords();
             }
         }
