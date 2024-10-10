@@ -117,10 +117,16 @@
                 document.getElementById('username').nextElementSibling.innerHTML = '';
             }
 
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
             if (email === '') {
                 document.getElementById('email').classList.add('is-invalid');
                 document.getElementById('email').classList.remove('is-valid');
                 document.getElementById('email').nextElementSibling.innerHTML = 'Email is required';
+                signUpButton.disabled = true;
+            } else if (!emailRegex.test(email)) {
+                document.getElementById('email').classList.add('is-invalid');
+                document.getElementById('email').classList.remove('is-valid');
+                document.getElementById('email').nextElementSibling.innerHTML = 'Invalid email address';
                 signUpButton.disabled = true;
             } else {
                 document.getElementById('email').classList.remove('is-invalid');
