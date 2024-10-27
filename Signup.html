@@ -72,7 +72,8 @@
                 <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password...">
                 <div id="confirmPasswordFeedback" class="feedback"></div>
             </div>
-            <button type="submit" class="btn btn-primary">Sign Up</button>
+            <div id="jsonOutput" class="mt-3"></div>
+            <button type="submit" class="btn btn-primary" disabled>Sign Up</button>
         </form>
 
         <div class="mt-3">
@@ -97,6 +98,9 @@
         const usernameInput = document.getElementById('username');
         const emailInput = document.getElementById('email');
         const signUpButton = document.getElementById('signupForm').querySelector('button[type="submit"]');
+        const jsonOutput = document.getElementById('jsonOutput');
+    
+        signUpButton.disabled = true;
     
         passwordInput.addEventListener('input', checkPasswords);
         confirmPasswordInput.addEventListener('input', checkPasswords);
@@ -106,11 +110,13 @@
         function checkFields() {
             const username = usernameInput.value;
             const email = emailInput.value;
+            let isValid = true;
+    
             if (username === '') {
                 document.getElementById('username').classList.add('is-invalid');
                 document.getElementById('username').classList.remove('is-valid');
                 document.getElementById('username').nextElementSibling.innerHTML = 'Username is required';
-                signUpButton.disabled = true;
+                isValid = false;
             } else {
                 document.getElementById('username').classList.remove('is-invalid');
                 document.getElementById('username').classList.add('is-valid');
@@ -122,19 +128,20 @@
                 document.getElementById('email').classList.add('is-invalid');
                 document.getElementById('email').classList.remove('is-valid');
                 document.getElementById('email').nextElementSibling.innerHTML = 'Email is required';
-                signUpButton.disabled = true;
+                isValid = false;
             } else if (!emailRegex.test(email)) {
                 document.getElementById('email').classList.add('is-invalid');
                 document.getElementById('email').classList.remove('is-valid');
                 document.getElementById('email').nextElementSibling.innerHTML = 'Invalid email address';
-                signUpButton.disabled = true;
+                isValid = false;
             } else {
                 document.getElementById('email').classList.remove('is-invalid');
                 document.getElementById('email').classList.add('is-valid');
                 document.getElementById('email').nextElementSibling.innerHTML = '';
             }
     
-            if (username !== '' && email !== '') {
+            signUpButton.disabled = !isValid;
+            if (isValid) {
                 checkPasswords();
             }
         }
@@ -142,43 +149,44 @@
         function checkPasswords() {
             const password = passwordInput.value;
             const confirmPassword = confirmPasswordInput.value;
+            let isValid = true;
+    
             if (password === '' || confirmPassword === '') {
                 signUpButton.disabled = true;
-            } else {
-                if (password.length < 8) {
-                    signUpButton.disabled = true;
-                    document.getElementById('passwordFeedback').innerHTML = `<div class="alert alert-danger" role="alert">Password must be at least 8 characters</div>`;
-                } else if (!/[A-Z]/.test(password)) {
-                    signUpButton.disabled = true;
-                    document.getElementById('passwordFeedback').innerHTML = `<div class="alert alert-danger" role="alert">Password must contain at least one uppercase letter</div>`;
-                } else if (!/[0-9]/.test(password)) {
-                    signUpButton.disabled = true;
-                    document.getElementById('passwordFeedback').innerHTML = `<div class="alert alert-danger" role="alert">Password must contain at least one number</div>`;
-                } else if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)) {
-                    signUpButton.disabled = true;
-                    document.getElementById('passwordFeedback').innerHTML = `<div class="alert alert-danger" role="alert">Password must contain at least one symbol</div>`;
-                } else {
-                    document.getElementById('passwordFeedback').innerHTML = `<div class="alert alert-success" role="alert">Password is valid</div>`;
-                }
-    
-                if (password !== confirmPassword) {
-                    signUpButton.disabled = true;
-                    document.getElementById('confirmPasswordFeedback').innerHTML = `<div class="alert alert-danger" role="alert">Passwords do not match</div>`;
-                } else if (password === confirmPassword && password.length >= 8) {
-                    signUpButton.disabled = false;
-                    document.getElementById('confirmPasswordFeedback').innerHTML = `<div class="alert alert-success" role="alert">Passwords match</div>`;                }
+                return;
             }
-        }
     
-        signUpButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            const formData = {
-                username: usernameInput.value,
-                email: emailInput.value,
-                password: passwordInput.value,
-                confirmPassword: confirmPasswordInput.value
-            };
-            const jsonFormData = JSON.stringify(formData, null, 2);
-            document.getElementById('jsonOutput').innerHTML = `<pre>${jsonFormData}</pre>`;
-        });
+            if (password.length < 8) {
+                isValid = false;
+                document.getElementById('passwordFeedback').innerHTML = `<div class="alert alert-danger" role="alert">Password must be at least 8 characters</div>`;
+            } else if (!/[A-Z]/.test(password)) {
+                isValid = false;
+                document.getElementById('passwordFeedback').innerHTML = `<div class="alert alert-danger" role="alert">Password must contain at least one uppercase letter</div>`;
+            } else if (!/[0-9]/.test(password)) {
+                isValid = false;
+                document.getElementById('passwordFeedback').innerHTML = `<div class="alert alert-danger" role="alert">Password must contain at least one number</div>`;
+            } else if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)) {
+                isValid = false;
+                document.getElementById(' passwordFeedback').innerHTML = `<div class="alert alert-danger" role="alert">Password must contain at least one symbol</div>`;
+            } else if (password !== confirmPassword) {
+                isValid = false;
+                document.getElementById('confirmPasswordFeedback').innerHTML = `<div class="alert alert-danger" role="alert">Passwords do not match</div>`;
+            } else {
+                document.getElementById('passwordFeedback').innerHTML = `<div class="alert alert-success" role="alert">Password is valid</div>`;
+                document.getElementById('confirmPasswordFeedback').innerHTML = `<div class="alert alert-success" role="alert">Passwords match</div>`;
+            }
+    
+            signUpButton.disabled = !isValid;
+    
+            signUpButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                const userData = {
+                    username: usernameInput.value,
+                    email: emailInput.value,
+                    password: passwordInput.value,
+                    confirmPassword: confirmPasswordInput.value,
+                };
+                jsonOutput.innerHTML = `<pre>${JSON.stringify(userData, null, 2)}</pre>`;
+            });
+        }
     </script>
