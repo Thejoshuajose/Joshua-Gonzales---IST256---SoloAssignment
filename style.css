@@ -148,8 +148,21 @@ body {
     color: #f5deb3; 
   }
 
-  #jsonOutput {
-    background-color: #343a40; 
+.feedback {
+    font-size: 1.5rem;
+    margin-left: 10px;
+}
+
+.valid-feedback {
+    color: green;
+}
+
+.invalid-feedback {
+    color: red;
+}
+
+#jsonOutput {
+    background-color: white; 
     color: white; 
     padding: 10px; 
     border-radius: 5px; 

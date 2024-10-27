@@ -147,15 +147,18 @@
         }
     
         function checkPasswords() {
-            const password = passwordInput.value;
-            const confirmPassword = confirmPasswordInput.value;
+            const password = passwordInput.value.trim(); 
+            const confirmPassword = confirmPasswordInput.value.trim();
             let isValid = true;
-    
+
+            document.getElementById('passwordFeedback').innerHTML = '';
+            document.getElementById('confirmPasswordFeedback').innerHTML = '';
+
             if (password === '' || confirmPassword === '') {
                 signUpButton.disabled = true;
                 return;
             }
-    
+
             if (password.length < 8) {
                 isValid = false;
                 document.getElementById('passwordFeedback').innerHTML = `<div class="alert alert-danger" role="alert">Password must be at least 8 characters</div>`;
@@ -167,7 +170,7 @@
                 document.getElementById('passwordFeedback').innerHTML = `<div class="alert alert-danger" role="alert">Password must contain at least one number</div>`;
             } else if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)) {
                 isValid = false;
-                document.getElementById(' passwordFeedback').innerHTML = `<div class="alert alert-danger" role="alert">Password must contain at least one symbol</div>`;
+                document.getElementById('passwordFeedback').innerHTML = `<div class="alert alert-danger" role="alert">Password must contain at least one symbol</div>`;
             } else if (password !== confirmPassword) {
                 isValid = false;
                 document.getElementById('confirmPasswordFeedback').innerHTML = `<div class="alert alert-danger" role="alert">Passwords do not match</div>`;
@@ -175,9 +178,9 @@
                 document.getElementById('passwordFeedback').innerHTML = `<div class="alert alert-success" role="alert">Password is valid</div>`;
                 document.getElementById('confirmPasswordFeedback').innerHTML = `<div class="alert alert-success" role="alert">Passwords match</div>`;
             }
-    
+
             signUpButton.disabled = !isValid;
-    
+        }
             signUpButton.addEventListener('click', (e) => {
                 e.preventDefault();
                 const userData = {
@@ -188,5 +191,5 @@
                 };
                 jsonOutput.innerHTML = `<pre>${JSON.stringify(userData, null, 2)}</pre>`;
             });
-        }
+        
     </script>
