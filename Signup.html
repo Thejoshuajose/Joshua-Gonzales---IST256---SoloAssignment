@@ -92,17 +92,17 @@
         </ul>
     </footer>
     <script>
-
         const passwordInput = document.getElementById('password');
         const confirmPasswordInput = document.getElementById('confirmPassword');
         const usernameInput = document.getElementById('username');
         const emailInput = document.getElementById('email');
         const signUpButton = document.getElementById('signupForm').querySelector('button[type="submit"]');
+    
         passwordInput.addEventListener('input', checkPasswords);
         confirmPasswordInput.addEventListener('input', checkPasswords);
         usernameInput.addEventListener('input', checkFields);
         emailInput.addEventListener('input', checkFields);
-
+    
         function checkFields() {
             const username = usernameInput.value;
             const email = emailInput.value;
@@ -116,7 +116,7 @@
                 document.getElementById('username').classList.add('is-valid');
                 document.getElementById('username').nextElementSibling.innerHTML = '';
             }
-
+    
             const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
             if (email === '') {
                 document.getElementById('email').classList.add('is-invalid');
@@ -133,12 +133,12 @@
                 document.getElementById('email').classList.add('is-valid');
                 document.getElementById('email').nextElementSibling.innerHTML = '';
             }
-
+    
             if (username !== '' && email !== '') {
                 checkPasswords();
             }
         }
-
+    
         function checkPasswords() {
             const password = passwordInput.value;
             const confirmPassword = confirmPasswordInput.value;
@@ -160,19 +160,26 @@
                 } else {
                     document.getElementById('passwordFeedback').innerHTML = `<div class="alert alert-success" role="alert">Password is valid</div>`;
                 }
-
+    
                 if (password !== confirmPassword) {
                     signUpButton.disabled = true;
                     document.getElementById('confirmPasswordFeedback').innerHTML = `<div class="alert alert-danger" role="alert">Passwords do not match</div>`;
                 } else if (password === confirmPassword && password.length >= 8) {
                     signUpButton.disabled = false;
-                    document.getElementById('confirmPasswordFeedback').innerHTML = `<div class="alert alert-success" role="alert">Passwords match</div>`;
+                    document.getElementById('confirmPasswordFeedback').innerHTML = `< div class="alert alert-success" role="alert">Passwords match</div>`;
                 }
             }
-        }   
-        signUpButton.addEventListener('click', function(event) {
-            event.preventDefault(); // prevent the default form submission
-            window.location.href = 'Login.html'; // redirect to Login.html
+        }
+    
+        signUpButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            const formData = {
+                username: usernameInput.value,
+                email: emailInput.value,
+                password: passwordInput.value,
+                confirmPassword: confirmPasswordInput.value
+            };
+            const jsonFormData = JSON.stringify(formData, null, 2);
+            document.getElementById('jsonOutput').innerHTML = `<pre>${jsonFormData}</pre>`;
         });
-
-    </script> 
+    </script>
